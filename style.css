@@ -1,0 +1,559 @@
+:root {
+  --blue: #1a55a8;
+  --blue-dark: #0f3570;
+  --red: #d32020;
+  --gray-light: #f0f0f0;
+  --gray-mid: #888;
+  --gray-dark: #333;
+  --white: #fff;
+  --font: 'Segoe UI', Arial, sans-serif;
+  --mono: 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: #e8edf4;
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* ---- TOP BAR ---- */
+.topbar {
+  background: var(--blue-dark);
+  color: var(--white);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13px;
+}
+.topbar-logo {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--white);
+  text-decoration: none;
+}
+.topbar-sub { opacity: 0.7; font-size: 11px; }
+
+/* ---- LAYOUT ---- */
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 28px 16px 60px;
+}
+
+h1.page-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--blue-dark);
+  margin-bottom: 6px;
+}
+.page-date {
+  font-size: 12px;
+  color: var(--gray-mid);
+  margin-bottom: 24px;
+}
+
+/* ---- LINE TABS ---- */
+.line-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.line-tab {
+  background: var(--white);
+  border: 2px solid var(--blue);
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 15px;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+.line-tab:hover, .line-tab.active {
+  background: var(--blue);
+  color: var(--white);
+}
+
+/* ---- LINE SECTION ---- */
+.line-section { display: none; }
+.line-section.visible { display: block; }
+
+/* ---- TIMETABLE CARD ---- */
+.tt-card {
+  background: var(--white);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  margin-bottom: 28px;
+}
+
+/* ---- HEADER ---- */
+.tt-header {
+  background: var(--blue);
+  color: var(--white);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.tt-linenum {
+  background: var(--white);
+  color: var(--blue);
+  font-weight: 700;
+  font-size: 22px;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+.tt-dest { font-weight: 700; font-size: 15px; }
+.tt-stop-label { font-size: 11px; opacity: 0.8; margin-top: 2px; }
+
+/* ---- DIRECTION TOGGLE ---- */
+.direction-toggle {
+  display: flex;
+  gap: 8px;
+  padding: 10px 18px 0;
+  flex-wrap: wrap;
+}
+.dir-btn {
+  background: var(--white);
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.dir-btn:hover {
+  background: var(--gray-light);
+}
+.dir-btn.active {
+  background: var(--blue);
+  color: var(--white);
+}
+
+/* ---- ROUTE / STOPS ---- */
+.tt-route {
+  padding: 12px 18px 16px;
+}
+
+.stop-row {
+  display: flex;
+  align-items: stretch;
+  min-height: 44px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.12s;
+}
+.stop-row:hover {
+  background: var(--gray-light);
+}
+.stop-row.open {
+  background: var(--gray-light);
+}
+.stop-graphic {
+  width: 24px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 12px;
+}
+.stop-line-top, .stop-line-bot {
+  width: 3px;
+  background: var(--blue);
+  flex: 1;
+}
+.stop-line-top { min-height: 8px; }
+.stop-line-bot { min-height: 8px; }
+.stop-line-top.invisible, .stop-line-bot.invisible { background: transparent; }
+.stop-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--blue);
+  border: 2.5px solid var(--white);
+  box-shadow: 0 0 0 2px var(--blue);
+  flex-shrink: 0;
+  z-index: 1;
+}
+.stop-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4px 0;
+}
+.stop-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-dark);
+  line-height: 1.3;
+}
+.stop-badge {
+  display: inline-block;
+  background: var(--gray-light);
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 0 4px;
+  margin-left: 5px;
+  vertical-align: middle;
+  color: var(--gray-dark);
+}
+.stop-time {
+  font-size: 11px;
+  color: var(--gray-mid);
+  margin-top: 1px;
+}
+
+.stop-arrow {
+  margin-left: auto;
+  align-self: center;
+  color: var(--gray-mid);
+  font-size: 12px;
+  padding-right: 6px;
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+.stop-row.open .stop-arrow {
+  transform: rotate(90deg);
+}
+
+/* ---- PER-STOP TIMETABLE PANEL ---- */
+.stop-timetable {
+  display: none;
+  margin: 4px 0 10px 36px;
+  padding: 10px 14px;
+  background: var(--gray-light);
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+.stop-timetable.open {
+  display: block;
+}
+.stop-timetable .tt-day-label {
+  margin-top: 0;
+}
+.stop-timetable .tt-day-label:not(:first-child) {
+  margin-top: 10px;
+}
+
+/* ---- ROZGAŁĘZIENIA TRASY ---- */
+.branch-fork-header {
+  padding: 6px 0 4px 36px;
+  border-top: 0.5px dashed var(--color-border-tertiary);
+  margin-top: 2px;
+}
+.branch-labels {
+  display: flex;
+  gap: 0;
+}
+.branch-label-main {
+  flex: 1;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #1a55a8;
+  padding-right: 8px;
+  border-right: 0.5px dashed var(--color-border-tertiary);
+}
+.branch-label-variant {
+  flex: 1;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding-left: 8px;
+}
+.branch-columns {
+  display: flex;
+  gap: 0;
+}
+.branch-col {
+  flex: 1;
+  min-width: 0;
+}
+.branch-col-main {
+  border-right: 0.5px dashed var(--color-border-tertiary);
+}
+.branch-col-variant {
+  padding-left: 0;
+}
+
+/* ---- WARIANTY KURSÓW ---- */
+sup.variant-sup {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--red);
+  vertical-align: super;
+  line-height: 0;
+  margin-left: 1px;
+}
+.variant-legend {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--gray-mid);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.variant-legend-item sup.variant-sup {
+  font-size: 10px;
+}
+
+/* ---- TIMETABLE TABLE ---- */
+.tt-table-wrap {
+  border-top: 1px solid #e0e0e0;
+  padding: 14px 18px;
+}
+.tt-day-label {
+  background: var(--gray-dark);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 3px;
+  margin-bottom: 6px;
+  display: inline-block;
+}
+table.tt {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+table.tt th {
+  background: #555;
+  color: var(--white);
+  padding: 3px 8px;
+  text-align: center;
+  font-weight: 700;
+  border: 1px solid #888;
+  width: 40px;
+}
+table.tt td.hour {
+  background: var(--red);
+  color: var(--white);
+  font-weight: 700;
+  text-align: center;
+  padding: 3px 6px;
+  border: 1px solid #b01818;
+  width: 40px;
+}
+table.tt td.mins {
+  padding: 3px 10px;
+  border: 1px solid #ddd;
+  letter-spacing: 1px;
+  color: var(--gray-dark);
+}
+
+/* ---- FOOTER ---- */
+.tt-footer {
+  font-size: 10px;
+  color: var(--gray-mid);
+  padding: 8px 18px 12px;
+  border-top: 1px solid #eee;
+}
+
+/* ---- MAIN NAV ---- */
+.main-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #dde3ec;
+}
+.main-nav-btn {
+  background: none;
+  border: none;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-mid);
+  padding: 10px 16px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.15s, border-color 0.15s;
+}
+.main-nav-btn:hover { color: var(--blue); }
+.main-nav-btn.active {
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+
+.main-view { display: none; }
+.main-view.visible { display: block; }
+
+/* ---- BRYGADY: filtr dnia ---- */
+.brig-dayfilter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.brig-day-btn {
+  background: var(--white);
+  border: 1px solid #ccc;
+  color: var(--gray-dark);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+.brig-day-btn.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--white);
+}
+
+/* ---- BRYGADY: karta linii ---- */
+.brig-line-card {
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+.brig-line-header {
+  background: var(--blue);
+  color: var(--white);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+.brig-line-header .tt-linenum {
+  width: 38px; height: 38px; font-size: 18px;
+}
+.brig-line-meta { font-size: 12px; opacity: 0.85; }
+.brig-line-header .brig-expand-icon {
+  margin-left: auto;
+  font-size: 12px;
+  transition: transform 0.15s;
+}
+.brig-line-card.open .brig-expand-icon { transform: rotate(90deg); }
+
+.brig-list {
+  display: none;
+  padding: 12px 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.brig-line-card.open .brig-list { display: flex; }
+
+.brig-chip {
+  background: var(--gray-light);
+  border: 1px solid #d8d8d8;
+  border-radius: 18px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-dark);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.brig-chip:hover { background: #e4e9f2; }
+.brig-chip.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--white);
+}
+.brig-chip .brig-combined-badge {
+  background: var(--red);
+  color: var(--white);
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* ---- BRYGADY: panel szczegółów kursów ---- */
+.brig-detail {
+  display: none;
+  border-top: 1px solid #eee;
+  padding: 14px 16px 16px;
+}
+.brig-detail.open { display: block; }
+
+.brig-detail-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue-dark);
+  margin-bottom: 10px;
+}
+
+.brig-course-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-bottom: 4px;
+  background: var(--gray-light);
+}
+.brig-course-time {
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--gray-dark);
+  width: 48px;
+  flex-shrink: 0;
+}
+.brig-course-line {
+  background: var(--blue);
+  color: var(--white);
+  font-weight: 700;
+  border-radius: 4px;
+  width: 26px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.brig-course-route {
+  color: var(--gray-dark);
+  flex: 1;
+}
+.brig-course-row.is-break {
+  background: transparent;
+  border: 1px dashed #ccc;
+  color: var(--gray-mid);
+  font-style: italic;
+  justify-content: center;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 600px) {
+  .main-nav-btn { font-size: 13px; padding: 8px 10px; }
+  .page { padding: 16px 10px 40px; }
+  .tt-dest { font-size: 13px; }
+  .stop-name { font-size: 12px; }
+}

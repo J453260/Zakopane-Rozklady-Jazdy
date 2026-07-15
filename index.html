@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rozkłady jazdy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <span class="topbar-logo">MPK</span>
+  <div>
+    <div>Miejskie Przedsiębiorstwo Komunikacyjne</div>
+    <div class="topbar-sub">Rozkłady jazdy linii autobusowych</div>
+  </div>
+</div>
+
+<div class="page">
+  <h1 class="page-title">Rozkłady jazdy</h1>
+  <div class="page-date">Obowiązuje od: 2026.06.03</div>
+
+  <!-- GŁÓWNA NAWIGACJA -->
+  <div class="main-nav">
+    <button class="main-nav-btn active" onclick="showView('lines', this)">📋 Rozkłady</button>
+    <button class="main-nav-btn" onclick="showView('brigades', this)">🚌 Brygady</button>
+  </div>
+
+  <!-- ===== WIDOK: ROZKŁADY ===== -->
+  <div id="view-lines" class="main-view visible">
+    <div class="line-tabs">
+      <div class="line-tab active" onclick="showLine(10, this)">10</div>
+      <div class="line-tab" onclick="showLine(11, this)">11</div>
+      <div class="line-tab" onclick="showLine(1101, this)">1101</div>
+      <div class="line-tab" onclick="showLine(1102, this)">1102</div>
+      <div class="line-tab" onclick="showLine(12, this)">12</div>
+      <div class="line-tab" onclick="showLine(1201, this)">1201</div>
+      <div class="line-tab" onclick="showLine(1202, this)">1202</div>
+      <div class="line-tab" onclick="showLine(13, this)">13</div>
+      <div class="line-tab" onclick="showLine(14, this)">14</div>
+      <div class="line-tab" onclick="showLine(15, this)">15</div>
+      <div class="line-tab" onclick="showLine(16, this)">16</div>
+      <div class="line-tab" onclick="showLine(17, this)">17</div>
+      <div class="line-tab" onclick="showLine(18, this)">18</div>
+    </div>
+
+    <div class="line-section visible" id="line-10"><div class="tt-card"><div class="tt-header"><div class="tt-linenum">10</div><div><div class="tt-dest" id="dest-10">—</div><div class="tt-stop-label">Kliknij przystanek, aby zobaczyć rozkład jazdy</div></div></div><div class="direction-toggle" id="dirtoggle-10"></div><div class="tt-route" id="route-10"></div><div class="tt-footer">MPK S.A. · Rozkład ważny od 2026.06.03</div></div></div>
+    <div class="line-section" id="line-11"><div class="tt-card"><div class="tt-header"><div class="tt-linenum">11</div><div><div class="tt-dest" id="dest-11">—</div><div class="tt-stop-label">Kliknij przystanek, aby zobaczyć rozkład jazdy</div></div></div><div class="direction-toggle" id="dirtoggle-11"></div><div class="tt-route" id="route-11"></div><div class="tt-footer">MPK S.A. · Rozkład ważny od 2026.06.03</div></div></div>
+    <div class="line-section" id="line-1101"><div class="tt-card"><div class="tt-header"><div class="tt-linenum">1101</div><div><div class="tt-dest" id="dest-1101">—</div><div class="tt-stop-label">Kliknij przystanek, aby zobaczyć rozkład jazdy</div></div></div><div class="direction-toggle" id="dirtoggle-1101"></div><div class="tt-route" id="route-1101"></div><div class="tt-footer">MPK S.A. · Rozkład ważny od 2026.06.03</div></div></div>
+    <div class="line-section" id="line-1102"><div class="tt-card"><div class="tt-header"><div class="tt-linenum">1102</div><div><div class="tt-dest" id="dest-1102">—</div><div class="tt-stop-label">Kliknij przystanek, aby zobaczyć rozkład jazdy</div></div></div><div class="direction-toggle" id="dirtoggle-1102"></div><div class="tt-route" id="route-1102"></div><div class="tt-footer">MPK S.A. · Rozkład ważny od 2026.06.03</div></div></div>
+    <div class="line-section" id="line-12"><div class="tt-card"><div class="tt-header"><div class="tt-linenum">12</div><div><div class="tt-dest" id="dest-12">—</div><div class="tt-stop-label">Kliknij przystanek, aby zobaczyć rozkład jazdy</div></div></div><div class="direction-toggle" id="dirtoggle-12"></div><div class="tt-route" id="route-12"></div><div class="tt-footer">MPK S.A. · Rozkład ważny od 2026.06.03</div></div></div>
+    <div class="line-section" id="line-1201"><div class="tt-card"><div class="tt-header"><div class="tt-linenum">1201</div><div><div class="tt-dest" id="dest-1201">—</div><div class="tt-stop-label">Kliknij przystanek, aby zobaczyć rozkład jazdy</div></div></div><div class="direction-toggle" id="dirtoggle-1201"></div><div class="tt-route" id="route-1201"></div><div class="tt-footer">MPK S.A. · Rozkład ważny od 2026.06.03</div></div></div>
+    <div class="line-section" id="line-1202"><div class="tt-card"><div class="tt-header"><div class="tt-linenum">1202</div><div><div class="tt-dest" id="dest-1202">—</div><div class="tt-stop-label">Kliknij przystanek, aby zobaczyć rozkład jazdy</div></div></div><div class="direction-toggle" id="dirtoggle-1202"></div><div class="tt-route" id="route-1202"></div><div class="tt-footer">MPK S.A. · Rozkład ważny od 2026.06.03</div></div></div>
+    <div class="line-section" id="line-13"><div class="tt-card"><div class="tt-header"><div class="tt-linenum">13</div><div><div class="tt-dest" id="dest-13">—</div><div class="tt-stop-label">Kliknij przystanek, aby zobaczyć rozkład jazdy</div></div></div><div class="direction-toggle" id="dirtoggle-13"></div><div class="tt-route" id="route-13"></div><div class="tt-footer">MPK S.A. · Rozkład ważny od 2026.06.03</div></div></div>
+    <div class="line-section" id="line-14"><div class="tt-card"><div class="tt-header"><div class="tt-linenum">14</div><div><div class="tt-dest" id="dest-14">—</div><div class="tt-stop-label">Kliknij przystanek, aby zobaczyć rozkład jazdy</div></div></div><div class="direction-toggle" id="dirtoggle-14"></div><div class="tt-route" id="route-14"></div><div class="tt-footer">MPK S.A. · Rozkład ważny od 2026.06.03</div></div></div>
+    <div class="line-section" id="line-15"><div class="tt-card"><div class="tt-header"><div class="tt-linenum">15</div><div><div class="tt-dest" id="dest-15">—</div><div class="tt-stop-label">Kliknij przystanek, aby zobaczyć rozkład jazdy</div></div></div><div class="direction-toggle" id="dirtoggle-15"></div><div class="tt-route" id="route-15"></div><div class="tt-footer">MPK S.A. · Rozkład ważny od 2026.06.03</div></div></div>
+    <div class="line-section" id="line-16"><div class="tt-card"><div class="tt-header"><div class="tt-linenum">16</div><div><div class="tt-dest" id="dest-16">—</div><div class="tt-stop-label">Kliknij przystanek, aby zobaczyć rozkład jazdy</div></div></div><div class="direction-toggle" id="dirtoggle-16"></div><div class="tt-route" id="route-16"></div><div class="tt-footer">MPK S.A. · Rozkład ważny od 2026.06.03</div></div></div>
+    <div class="line-section" id="line-17"><div class="tt-card"><div class="tt-header"><div class="tt-linenum">17</div><div><div class="tt-dest" id="dest-17">—</div><div class="tt-stop-label">Kliknij przystanek, aby zobaczyć rozkład jazdy</div></div></div><div class="direction-toggle" id="dirtoggle-17"></div><div class="tt-route" id="route-17"></div><div class="tt-footer">MPK S.A. · Rozkład ważny od 2026.06.03</div></div></div>
+    <div class="line-section" id="line-18"><div class="tt-card"><div class="tt-header"><div class="tt-linenum">18</div><div><div class="tt-dest" id="dest-18">—</div><div class="tt-stop-label">Kliknij przystanek, aby zobaczyć rozkład jazdy</div></div></div><div class="direction-toggle" id="dirtoggle-18"></div><div class="tt-route" id="route-18"></div><div class="tt-footer">MPK S.A. · Rozkład ważny od 2026.06.03</div></div></div>  
+  </div>
+
+  <!-- ===== WIDOK: BRYGADY ===== -->
+  <div id="view-brigades" class="main-view">
+
+    <!-- Filtr dnia -->
+    <div class="brig-dayfilter">
+      <button class="brig-day-btn active" onclick="setBrigDay('workday', this)">Dni robocze</button>
+      <button class="brig-day-btn" onclick="setBrigDay('saturday', this)">Soboty</button>
+      <button class="brig-day-btn" onclick="setBrigDay('sunday', this)">Niedziele</button>
+    </div>
+
+    <!-- Lista linii z brygadami -->
+    <div id="brig-lines-list"></div>
+  </div>
+
+</div><!-- .page -->
+
+<script src="brigades.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
