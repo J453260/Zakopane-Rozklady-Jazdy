@@ -11,7 +11,7 @@
 <div class="topbar">
   <span class="topbar-logo">MPK</span>
   <div>
-    <div>Miejskie Przedsiębiorstwo Komunikacyjne</div>
+    <div>MPK Zakopane</div>
     <div class="topbar-sub">Rozkłady jazdy linii autobusowych</div>
   </div>
 </div>
@@ -24,6 +24,7 @@
   <div class="main-nav">
     <button class="main-nav-btn active" onclick="showView('lines', this)">📋 Rozkłady</button>
     <button class="main-nav-btn" onclick="showView('brigades', this)">🚌 Brygady</button>
+    <button class="main-nav-btn" onclick="showView('departures', this)">🚏 Odjazdy z przystanku</button>
   </div>
 
   <!-- ===== WIDOK: ROZKŁADY ===== -->
@@ -72,10 +73,22 @@
     <!-- Lista linii z brygadami -->
     <div id="brig-lines-list"></div>
   </div>
+  
+  <!-- ===== WIDOK: ODJAZDY Z PRZYSTANKU ===== -->
+  <div id="view-departures" class="main-view">
+    <div class="dep-search-wrap">
+      <label class="dep-label" for="dep-stop-select">Wybierz przystanek:</label>
+      <select id="dep-stop-select" class="dep-select">
+        <option value="">— wybierz przystanek —</option>
+      </select>
+    </div>
+    <div id="dep-results"></div>
+  </div>
 
 </div><!-- .page -->
 
 <script src="brigades.js"></script>
 <script src="script.js"></script>
+<script src="departures.js"></script>
 </body>
 </html>
